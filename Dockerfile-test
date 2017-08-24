@@ -2,5 +2,4 @@ FROM jupyter/all-spark-notebook:8f56e3c47fec as sparky
 RUN pip install nose
 
 COPY . .
-WORKDIR tests
-RUN nosetests -vd
+RUN cd tests && nosetests -vd
