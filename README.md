@@ -18,3 +18,8 @@ docker-compose build test
 -or- run tests inside of the PyCharm Ultimate IDE
 1. Configure PyCharm to talk to Docker
 2. Configure a remote interpreter for this project and have it use `pyspark-fun-test` as the docker that provides the interpreter
+
+You can then run the Jupyter notebook with the python files exposed as
+```sh
+docker-compose up -d run
+```
