@@ -1,0 +1,5 @@
+FROM jupyter/all-spark-notebook:8f56e3c47fec as sparky
+
+RUN pip install nose
+
+CMD \[ "$(ls -A /opt/tools)" \] || cp -rf /opt/conda/* /opt/tools

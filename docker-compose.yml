@@ -1,10 +1,22 @@
 version: '3.3'
 services:
+  tools:
+    image: pyspark-fun-tools
+    build:
+      context: .
+      dockerfile: Dockerfile-tools
+    volumes:
+      - "${PWD}/tools:/opt/tools"
   test:
     image: pyspark-fun-test
     build:
       context: .
       dockerfile: Dockerfile-test
+    working_dir: ${PWD}
+    volumes:
+      - "${PWD}:${PWD}"
+    depends_on:
+      - tools
   run:
     image: pyspark-fun-run
     build:

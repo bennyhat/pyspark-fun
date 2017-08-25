@@ -1,5 +1,3 @@
-FROM jupyter/all-spark-notebook:8f56e3c47fec as sparky
-RUN pip install nose
+FROM pyspark-fun-tools
 
-COPY . .
-RUN cd tests && nosetests -vd
+CMD cd tests && nosetests -vd
