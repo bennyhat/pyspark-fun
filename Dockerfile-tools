@@ -1,5 +1,12 @@
+FROM bennyhat/python-osx:3.6.2 as python-osx
 FROM jupyter/all-spark-notebook:8f56e3c47fec as sparky
 
-RUN pip install nose
+ADD requirements.txt .
+RUN pip install -r requirements.txt
 
-CMD \[ "$(ls -A /opt/tools)" \] || cp -rf /opt/conda/* /opt/tools
+COPY --from=python-osx /usr/lib/python/3.6.2 /opt/ref/python-osx-3.6.2
+
+CMD \[ "$(ls -A /opt/tools)" \] || \
+    cp -rf /opt/ref/* /opt/tools && \
+    chown -R ${USER}:${USER} /opt/tools 2> /dev/null || \
+    exit 0

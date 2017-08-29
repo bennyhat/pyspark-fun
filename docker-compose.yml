@@ -24,3 +24,5 @@ services:
       dockerfile: Dockerfile-run
     ports:
       - '80:8888'
+    depends_on:
+      - test
